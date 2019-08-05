@@ -1,4 +1,5 @@
 # Write your code here!
+require "pry"
 
 #contains and returns a hash nested 
 def game_hash
@@ -182,20 +183,19 @@ def big_shoe_rebounds
   game_hash.each do |location, team_data|
     team_data[:players].each do |player, stats|
       size = stats[:shoe]
-      if size > largest[0]
+      if size > largest[0] #checks the shoe size 
         largest[0] = size
         largest[1] = player
       end
     end
   end
   game_hash.each do |location, team_data|
-    team_data[:players].each do |player, stats|
+    team_data[:players].each do |player, stats| #key-value split
       if player === largest[1]
         return stats[:rebounds]
       end
     end
   end
-  nil
 end
 
 def most_points_scored
@@ -230,9 +230,8 @@ end
 def player_with_longest_name
   longest = [0, ""] #[name length, player name]
   game_hash.each do |location, team_data|
-    points = 0
     team_data[:players].each do |player, stats|
-      size = player.size()
+      size = player.size() #name length  
       if size > longest[0]
         longest[0] = size
         longest[1] = player
@@ -259,5 +258,7 @@ end
 def long_name_steals_a_ton?
   player_with_longest_name === most_steals
 end
+
+
 
 
